@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Employee</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4"><br>
+                <h4 class="display-4">Add Employee</h4>
+                <form action="{%url 'addemp'%}" method="POST">{% csrf_token %} <!-- CSRF - Cross-Sight Request Forgery -->
+                    <div class="mb-3">
+                        <label for="emp_name">Full Name</label>
+                        <input type="text" name="emp_name" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone">Phone No.</label>
+                        <input type="number" name="phone" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="salary">Net Salary</label>
+                        <input type="number" name="net_salary" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <button type="submit"  class="btn btn-primary btn-lg btn-block">Save</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-4"></div>
+        </div>
+    </div>
+</body>
+</html>

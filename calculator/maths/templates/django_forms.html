@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Django Forms</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4">
+                <h4 class="display-4">Django Forms</h4>
+                <form id="myForm" method="POST">{%csrf_token%}
+                    <div class="mb-3"><br>
+                        {{ form.as_p }}  <!--  render form as pararaph-->
+                        <button type="submit" id="add" onclick="getId(this)" class="btn btn-primary">Add</button>
+                        <button type="submit" id="sub" onclick="getId(this)" class="btn btn-primary">Sub</button>
+                        <button type="submit" id="mul" onclick="getId(this)" class="btn btn-primary">Mul</button>
+                        <button type="submit" id="div" onclick="getId(this)" class="btn btn-primary">Div</button>
+                        <button type="submit" id="cub" onclick="getId(this)" class="btn btn-primary">Cube</button><br><br>
+                        {{result}}
+                    </div>
+                </form>
+            </div>
+            <div class="col-4"></div>
+        </div>
+    </div>
+</body>
+<script>
+    function getId(btn)
+    {
+        if (btn.id=="add"){
+            document.getElementById("myForm").action = "{%url 'dforms'%}";
+        }
+        else if (btn.id=="sub"){
+            document.getElementById("myForm").action = "{%url 'subnum'%}";
+        }
+        else if (btn.id=="mul"){
+            document.getElementById("myForm").action = "{%url 'mulnum'%}";
+        }
+        else if (btn.id=="div"){
+            document.getElementById("myForm").action = "{%url 'divnum'%}";
+        }
+        else if (btn.id=="cub"){
+            document.getElementById("myForm").action = "{%url 'cubnum'%}";
+        }
+    }
+</script>
+</html>

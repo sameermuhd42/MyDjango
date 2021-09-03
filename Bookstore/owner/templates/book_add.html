@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Book</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'bookadd/css/style_bgimg.css' %}">
+</head>
+<body class="bgimg-1">
+    <div class="container">
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4"></div>
+            <div class="col-4"><br><br><br>
+                <form action="{% url 'addbook' %}" method="POST">{% csrf_token %}
+                    <!-- CSRF - Cross-Sight Request Forgery -->
+                    <div class="mb-3">
+                        <h4 class="display-4">Add Book</h4>
+                        <div class="signin">
+                            <label for="book_name">Book Name</label>
+                            <input type="text" name="book_name" class="form-control">
+                            <label for="author">Author</label>
+                            <input type="text" name="author" class="form-control">
+                            <label for="price">Price</label>
+                            <input type="number" name="price" class="form-control">
+                            <label for="copies">Copies</label>
+                            <input type="number" name="copies" class="form-control">
+                            <button type="submit" class="btn btn-success">Add Book</button>
+                            <button type="reset" class="btn btn-primary">Reset</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

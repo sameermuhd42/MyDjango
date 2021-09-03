@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Available Books</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'bookadd/css/style.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-7"><br>
+                <h2 class="display-4">Available Books</h2><br>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Book Name</th>
+                            <th class="text-center">Author</th>
+                            <th class="text-center">Price</th>
+                            <th class="text-center">Copies</th>
+                            <th class="text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        {% for book in books %}
+                        <tr>
+                            <td class="text-center">{{ book.book_name }}</td>
+                            <td class="text-center">{{ book.author }}</td>
+                            <td class="text-center">{{ book.price }}</td>
+                            <td class="text-center">{{ book.copies }}</td>
+                            <td class="text-center"><a href="{% url 'viewbook' book.id %}" class="btn btn-success">View</a>
+                            <a href="{% url 'changebook' book.id %}" class="btn btn-primary">Update</a>
+                            <a href="{% url 'removebook' book.id %}" class="btn btn-danger">Remove</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-3"><br><br><br>
+                <form method="POST">{% csrf_token %}
+                      <div class="input-group mb-3">
+                            <input type="text" name="book_name" class="form-control" placeholder="Search">
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-success"><img src="{% static 'bookadd/images/searchicon1.png' %}" /></button>
+                        </div>
+                      </div>
+                      
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

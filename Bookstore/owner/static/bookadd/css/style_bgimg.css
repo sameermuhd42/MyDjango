@@ -1,0 +1,60 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font: 400 15px/1.8 "Lato", sans-serif;
+    color: #777;
+  }
+  
+  .bgimg-1, .bgimg-2, .bgimg-3 {
+    position: relative;
+    opacity: 0.65;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  
+  }
+  .bgimg-1 {
+    background-image: url("bookimg.jpg");
+    height: 100%;
+  }
+  
+  .caption {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    color: #000;
+  }
+  
+  .caption span.border {
+    background-color: #111;
+    color: #fff;
+    padding: 18px;
+    font-size: 25px;
+    letter-spacing: 10px;
+  }
+
+  .signin{
+    width: 418px;
+    min-height: 100px;
+    position: relative;
+    background: #f6f8fa;
+    padding-top: 10px;
+    overflow: hidden;  
+    margin: auto;  
+    margin: 20 0 0 450px;  
+    padding: 20px;  
+    border-radius: 6px ;
+    margin-bottom: 18px;
+    border: 1px solid #ebedef;
+}
+
+.btn{
+    width: 378px;
+    margin-bottom: 8px;
+}
+
+input{
+    margin-bottom: 15px;
+}
