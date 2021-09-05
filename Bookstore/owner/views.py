@@ -15,9 +15,7 @@ def sign_up(request):
         form = forms.SignUpForm(request.POST)
         if form.is_valid():
             print(form.cleaned_data)
-            return redirect('signin')
-        else:
-            return render(request, 'sign_up.html', {'form': form})
+        return redirect('signin')
     return render(request, 'sign_up.html', {'form': form})
 
 
