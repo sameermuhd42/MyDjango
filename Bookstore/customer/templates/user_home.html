@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+{% extends 'simple.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        {% for book in books %}
+        <div class="col-5"><br>
+            <div class="card" style="width: 18rem;">
+               
+                <img src="{{ book.image.url }}" class="card-img-top" alt="">
+                <div class="card-body">
+                    
+                    <h5 class="card-title">{{ book.book_name }}</h5>
+                    <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Author: {{ book.author }}</li>
+                    <li class="list-group-item">Price: {{ book.price }}</li>
+                    <li class="list-group-item">Copies: {{ book.copies }}</li>
+                </ul>
+                <div class="card-body">
+                    <a href="#" class="btn btn-warning">Buy Now</a>
+                </div>
+                
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

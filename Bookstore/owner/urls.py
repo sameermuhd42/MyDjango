@@ -3,6 +3,8 @@ from owner import views
 
 urlpatterns = [
     path('home/', views.home, name='home'),
+    path('', views.admin_base, name='adminbase'),
+    path('adminhome/', views.admin_home, name='adminhome'),
     path('accounts/signup/', views.sign_up, name='signup'),
     path('accounts/signin/', views.sign_in, name='signin'),
     # path('books/add/modelform/', views.book_create_modelform, name='modelform'),

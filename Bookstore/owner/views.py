@@ -9,6 +9,14 @@ def home(request):
     return render(request, 'index.html')
 
 
+def admin_base(request):
+    return render(request, 'base.html')
+
+
+def admin_home(request):
+    return render(request, 'admin_home.html')
+
+
 def sign_up(request):
     form = forms.SignUpForm
     if request.method == 'POST':
@@ -77,7 +85,7 @@ def book_list(request):
     if request.method == 'POST':
         book_name = request.POST.get('book_name')
         books = models.Book.objects.filter(book_name__contains=book_name)
-    return render(request, 'book_list.html', {'books': books})
+    return render(request, 'bookv.html', {'books': books})
 
 
 # 8000/owner/books/{id}/
