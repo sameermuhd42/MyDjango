@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+{% extends 'simple.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+        <form action="" method="POST">
+            {{ csrf_token }}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Proceed</button>
+        </form>
+    </div>
+    <div class="col-3"></div>
+</div>
+{% endblock %}

@@ -4,9 +4,14 @@
 {% load static %}
 {% block content %}
 <div class="container">
+    <!-- <div class="row">
+        <div class="col-5"><br>
+            <button class="btn btn-primary" id="">Filter</button>
+        </div>
+    </div> -->
     <div class="row">
         {% for book in books %}
-        <div class="col-5"><br>
+        <div class="col-3"><br>
             <div class="card" style="width: 18rem;">
                
                 <img src="{{ book.image.url }}" class="card-img-top" alt="">
@@ -21,7 +26,7 @@
                     <li class="list-group-item">Copies: {{ book.copies }}</li>
                 </ul>
                 <div class="card-body">
-                    <a href="#" class="btn btn-warning">Buy Now</a>
+                    <a href="{% url 'ordercreate' book.id %}" class="btn btn-warning">Buy Now</a>
                 </div>
                 
             </div>

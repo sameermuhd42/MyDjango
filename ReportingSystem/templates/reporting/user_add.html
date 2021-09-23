@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Add User</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4">
+                <h3>Add User</h3><br>
+                <form action="" method="POST">{% csrf_token %}
+                    <label for="id_email">Email address:</label>
+                    <input type="email" name="email" maxlength="255" required="" id="id_email"><br><br>
+                    <label for="id_role">Role:</label>
+                    <select name="role" id="id_role">
+                        <option value="faculty" selected="">faculty</option>
+                        <option value="HR">HR</option>
+                        <option value="counselor">counselor</option>
+                    </select><br><br>
+                    <label for="id_password1">Password:</label> 
+                    <input type="password" name="password1" required="" id="id_password1"><br><br>
+                    <label for="id_password2">Password confirmation:</label> 
+                    <input type="password" name="password2" required="" id="id_password2"><br><br>
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </form>
+            </div>
+            <div class="col-4"></div>
+        </div>
+    </div>
+</body>
+
+</html>
