@@ -80,10 +80,21 @@ class CustomUser(AbstractBaseUser):
 #     role = models.CharField(max_length=50, choices=options, default='faculty')
 
 
-# class Course(models.Model):
-#     course_name = models.CharField(max_length=255)
-#     is_active = models.CharField()
-#
-#
-# class Batch(models.Model):
-#     batch_name = models.ForeignKey(Course, on_delete=models.CASCADE)
+class Course(models.Model):
+    course_name = models.CharField(max_length=255)
+    is_active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.course_name
+
+
+class Batch(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    batch_name = models.CharField(max_length=255, unique=True)
+    is_active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.batch_name
+
+
+

@@ -6,7 +6,7 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.core.exceptions import ValidationError
 
-from reporting.models import CustomUser
+from reporting.models import CustomUser, Course, Batch
 
 
 # Register your models here.
@@ -84,3 +84,5 @@ admin.site.register(CustomUser, UserAdmin)
 # ... and, since we're not using Django's built-in permissions,
 # unregister the Group model from admin.
 admin.site.unregister(Group)
+admin.site.register(Course)
+admin.site.register(Batch)
