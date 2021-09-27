@@ -4,6 +4,11 @@ from reporting import models
 from django import forms
 
 
+class LoginForm(forms.Form):
+    email = forms.EmailField(widget=forms.EmailInput())
+    password = forms.CharField(widget=forms.PasswordInput())
+
+
 class UserAddForm(UserCreationForm):
     class Meta:
         model = models.CustomUser

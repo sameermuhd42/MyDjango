@@ -2,8 +2,10 @@ from django.urls import path
 from reporting import views
 
 urlpatterns = [
+    path('accounts/login/', views.Login.as_view(), name='login'),
+    path('accounts/logout/', views.Logout.as_view(), name='logout'),
     path('index/', views.AdminIndex.as_view(), name='adminindex'),
-    path('dash/', views.AdminDash.as_view(), name='admindash'),
+    path('admin/dash/', views.AdminDash.as_view(), name='admindash'),
     path('user/add/', views.UserAdd.as_view(), name='useradd'),
     path('users/', views.UserList.as_view(), name='userlist'),
     path('users/update/<int:id>', views.UserEdit.as_view(), name='useredit'),

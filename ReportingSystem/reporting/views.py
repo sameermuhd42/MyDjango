@@ -3,8 +3,38 @@ from django.urls import reverse_lazy
 from reporting import models
 from django.views.generic import TemplateView, CreateView, ListView, UpdateView
 from reporting import forms
+from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
+
+
+class Login(TemplateView):
+    form_class = forms.LoginForm
+    template_name = 'reporting/login.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = self.form_class
+        return context
+
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data.get('email')
+            password = form.cleaned_data.get('password')
+            user = authenticate(request, username=email, password=password)
+            if user:
+                login(request, user)
+                if request.user.is_staff:
+                    return redirect('admindash')
+                else:
+                    return redirect('userdash')
+
+
+class Logout(TemplateView):
+    def get(self, request, *args, **kwargs):
+        logout(request)
+        return redirect('login')
 
 
 class AdminIndex(TemplateView):
@@ -58,6 +88,11 @@ class CourseAdd(CreateView):
     model = models.Course
     template_name = 'reporting/course_add.html'
     success_url = reverse_lazy('courselist')
+
+    # def get_context_data(self, **kwargs):           # To add extra context in a specific type of view
+    #     context = super().get_context_data(**kwargs)
+    #     context['courses'] = self.model.objects.all()
+    #     return context
 
 
 class CourseList(ListView):
