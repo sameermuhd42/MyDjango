@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+{% extends 'reporting/index.html' %}
+{% load static %}
+{% block content %}
+<div class="container-fluid px-4">
+    <h3 class="mt-3">View Timesheets</h3>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="{% url 'admindash' %}">Dashboard</a></li>
+        <li class="breadcrumb-item active">View Timesheets</li>
+    </ol>
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-file-alt"></i>
+            Timesheets
+        </div>
+        <div class="card-body">
+            <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns"><div class="dataTable-top">
+                <div class="dataTable-search">
+                    <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0" method="POST">{% csrf_token %}
+                        <div class="input-group">
+                            <input class="form-control" type="date" name="date" id="id_date"/>
+                            <button class="btn btn-secondary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
+                        </div>
+                    </form>
+                </div>
+                <div class="dataTable-search">
+                    <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0" method="POST">{% csrf_token %}
+                        <div class="input-group">
+                            <input class="form-control" type="text" placeholder="Search" name=""/>
+                            <button class="btn btn-secondary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
+                        </div>
+                    </form>
+                </div>
+                </div></div>
+            
+            <table id="datatablesSimple">
+                <thead>
+                    <tr>
+                        <th>Batch Name</th>
+                        <th>Topic</th>
+                        <th>Topic Status</th>
+                        <th>Added By</th>
+                        <th>Added On</th>
+                        <th>Is Verified</th>
+                        <th>Action</th>
+
+                        <!-- <th>Action</th> -->
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for timesheet in timesheets %}
+                    <tr>
+                        <td>{{ timesheet.batch }}</td>
+                        <td>{{ timesheet.topic }}</td>
+                        <td>{{ timesheet.topic_status }}</td>
+                        <td>{{ timesheet.user }}</td>
+                        <td>{{ timesheet.date }}</td>
+                        <td>{{ timesheet.is_verified }}</td>
+                        <td class="text-center">
+                            {% if not timesheet.is_verified %}
+                            <a href="{% url 'timesheetverify' timesheet.id %}" class="btn btn-success"><i class="fas fa-check-square"></i>&nbsp;Verify</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

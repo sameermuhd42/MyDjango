@@ -15,4 +15,6 @@ urlpatterns = [
     path('batch/add/', views.BatchAdd.as_view(), name='batchadd'),
     path('batches/', views.BatchList.as_view(), name='batchlist'),
     path('batches/update/<int:id>', views.BatchEdit.as_view(), name='batchedit'),
+    path('timesheets/', views.AdminTimeSheetList.as_view(), name='admintimesheetlist'),
+    path('timesheet/verify/<int:id>', views.TimeSheetVerify.as_view(), name='timesheetverify')
 ]

@@ -61,6 +61,43 @@ blockquote p {
 blockquote small::before {
 	content: "# "
 }
+.modal-container{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(0,0,0,0.3);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.3s ease;
+}
+.modal-container.show{
+	opacity: 1;
+	pointer-events: auto;
+}
+.modal{
+	padding: 30px 50px;
+	border-radius: 5px;
+	box-shadow: 0 2px 4px rgba(0,0,0,.02);
+	width: 500px;
+	max-width: 100%;
+	text-align: center;
+}
+.modal h2{
+	margin: 1;
+}
+.modal button{
+	padding: 5px 25px;
+	box-shadow: 0 2px 4px rgba(0,0,0,.02);
+	border: 0;
+	border-radius: 5px;
+	font-size: 14px;
+
+}
 .lead {
 	font-size: 16px;
 	line-height: 22px

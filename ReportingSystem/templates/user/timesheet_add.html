@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<head>
+    <title>New Timesheet</title>
+</head>
+{% extends 'user/user_index.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block content %}
+<!-- /navbar -->
+<div class="wrapper">
+    <div class="container">
+        <div class="row">
+            <!--/.span12-->
+            <div class="span12">
+                <div class="content">
+                    <h3 class="mt-3">Add Timesheet</h3>
+                    <div class="module">
+                                <div class="module-head">
+                                    <h3>
+                                        New Timesheet</h3>
+                                </div>
+                                <div class="module-body">
+                                    <form action="" method="POST">{% csrf_token %}
+                                        <div class='col-3'>
+                                            <div class="form-group">
+                                                {{ form.batch.label_tag }}
+                                                {% render_field form.batch class="form-select" %} <br>
+                                                {{ form.topic.label_tag }}
+                                                {% render_field form.topic class="form-control" %} <br>
+                                                {{ form.topic_status.label_tag }}
+                                                {% render_field form.topic_status class="form-select" %} <br><br>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-info">Save</button>
+                                    </form>
+                                </div>
+                            </div>
+                    <!--/.module-->
+                </div>
+                <!--/.content-->
+            </div>
+            <!--/.span9-->
+        </div>
+    </div>
+    <!--/.container-->
+</div>
+<!--/.wrapper-->
+{% endblock %}

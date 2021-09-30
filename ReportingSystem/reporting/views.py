@@ -1,8 +1,11 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from reporting import models
+from user.models import TimeSheet
 from django.views.generic import TemplateView, CreateView, ListView, UpdateView
 from reporting import forms
+from reporting.decorators import login_required
+from django.utils.decorators import method_decorator
 from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
@@ -31,16 +34,19 @@ class Login(TemplateView):
                     return redirect('userdash')
 
 
+@method_decorator(login_required, name='dispatch')
 class Logout(TemplateView):
     def get(self, request, *args, **kwargs):
         logout(request)
         return redirect('login')
 
 
+@method_decorator(login_required, name='dispatch')
 class AdminIndex(TemplateView):
     template_name = 'reporting/index.html'
 
 
+@method_decorator(login_required, name='dispatch')
 class AdminDash(TemplateView):
     template_name = 'reporting/admin_dash.html'
 
@@ -52,6 +58,7 @@ class AdminDash(TemplateView):
     #     return render(request, self.template_name)
 
 
+@method_decorator(login_required, name='dispatch')
 class UserAdd(CreateView):
     form_class = forms.UserAddForm
     model = models.CustomUser
@@ -69,12 +76,14 @@ class UserAdd(CreateView):
             return redirect('userlist')
 
 
+@method_decorator(login_required, name='dispatch')
 class UserList(ListView):
     model = models.CustomUser
     context_object_name = 'users'
     template_name = 'reporting/user_list.html'
 
 
+@method_decorator(login_required, name='dispatch')
 class UserEdit(UpdateView):
     form_class = forms.UserAddForm
     model = models.CustomUser
@@ -83,18 +92,20 @@ class UserEdit(UpdateView):
     success_url = reverse_lazy('userlist')
 
 
+@method_decorator(login_required, name='dispatch')
 class CourseAdd(CreateView):
     form_class = forms.CourseAddForm
     model = models.Course
     template_name = 'reporting/course_add.html'
     success_url = reverse_lazy('courselist')
 
-    # def get_context_data(self, **kwargs):           # To add extra context in a specific type of view
+    # def get_context_data(self, **kwargs):           # To add extra context in a specific type of view by get() method
     #     context = super().get_context_data(**kwargs)
     #     context['courses'] = self.model.objects.all()
     #     return context
 
 
+@method_decorator(login_required, name='dispatch')
 class CourseList(ListView):
     model = models.Course
     context_object_name = 'courses'
@@ -105,6 +116,7 @@ class CourseList(ListView):
     #     return render(request, self.template_name, context={'courses': courses})
 
 
+@method_decorator(login_required, name='dispatch')
 class CourseEdit(UpdateView):
     form_class = forms.CourseAddForm
     model = models.Course
@@ -113,6 +125,7 @@ class CourseEdit(UpdateView):
     success_url = reverse_lazy('courselist')
 
 
+@method_decorator(login_required, name='dispatch')
 class BatchAdd(CreateView):
     form_class = forms.BatchAddForm
     model = models.Batch
@@ -120,12 +133,14 @@ class BatchAdd(CreateView):
     success_url = reverse_lazy('batchlist')
 
 
+@method_decorator(login_required, name='dispatch')
 class BatchList(ListView):
     model = models.Batch
     context_object_name = 'batches'
     template_name = 'reporting/batch_list.html'
 
 
+@method_decorator(login_required, name='dispatch')
 class BatchEdit(UpdateView):
     form_class = forms.BatchAddForm
     model = models.Batch
@@ -155,8 +170,27 @@ class BatchEdit(UpdateView):
 #             return redirect('batchlist')
 
 
+@method_decorator(login_required, name='dispatch')
+class AdminTimeSheetList(ListView):
+    model = TimeSheet
+    context_object_name = 'timesheets'
+    template_name = 'reporting/admin_timesheet_list.html'
+
+    # def get_queryset(self):
+    #     queryset = self.model.objects.all()
+    #     return queryset
 
 
+@method_decorator(login_required, name='dispatch')
+class TimeSheetVerify(TemplateView):
+    model = TimeSheet
+    pk_url_kwarg = 'id'
+
+    def get(self, request, *args, **kwargs):
+        time_sheet = self.model.objects.get(id=kwargs.get('id'))
+        time_sheet.is_verified = True
+        time_sheet.save()
+        return redirect('admintimesheetlist')
 
 
 
